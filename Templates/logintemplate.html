@@ -1,0 +1,189 @@
+﻿<script id="loginViewHtml">
+    <form id="LoginForm" >
+        <section class="loginContainer">
+        <div class="loginLogo"></div>
+        <div class="welcomemsg"> <span>
+        <label class="strong"><%= translateText("login-page-welcome-label")%>.</label>
+        </span> <span>
+        <label><%= translateText("login-page-login-label") %>.</label>
+        </span> </div>
+        <div id="loginControls">
+        <input type="text"  name="username" id="txtUserName" tabindex="1" data-role="none" class="validate[required, custom[onlyLetterNumber], maxSize[64]]" placeholder='<%= translateText("gen-username-label") %>'/>
+        <input type="password" name="password" id="txtPassword" tabindex="2" data-role="none" placeholder='<%= translateText("gen-password") %>' class="validate[required, maxSize[64]]"  />
+        <div class="wrongMessgae" id="invalidCredentials"><p><%= translateText("login-invalid-credentials-message") %></p></div>
+        <input type="button" id ="btnSubmit" value='<%= translateText("login-page-login-button-label") %>' data-role="none"/>
+        </div>
+        <div id="logindetails"> 
+        <input type="checkbox" id="chkRememberMe" tabindex="3" />
+        <label for="chkRememberMe"><%= translateText("login-page-rem-me-label") %></label>
+       <span class="forgot"><a href="#" id="forgotDetails"><%= translateText("login-page-forgotdetails-link")%></a></span> </div>
+        </section>
+        
+        <div class="sellan">
+        <select id="selLanguage" name="languageSelect" data-mini="true" data-theme="none" placeholder="select language" >
+        <option value="en-US">English</option>
+        <option value="es">Español</option>
+        </select>
+        </div>
+        <div class="privacy">
+        <p>Version: <%= window.appVersion %></p>
+        <label>&copy;<%= translateText("gen-copyright-text") %> </label>
+        <a href="../ReferenceDocuments/BS3_License.pdf" target="_blank"><%= translateText("login-legal-label") %> </a></div>
+         </form>
+        
+        <section id="forgotUserNameAndBothPopup" data-role="popup" data-theme="none" data-close-btn="none" data-position-to="window" data-dismissible="false">
+        
+        <section id="sendForgotUserNameAndBothWrap">
+        <form id="forgotUserNameAndBothForm">
+        <div class="secForgot">
+        <input type="radio" name="forgotDetails" id="forgotUserName" class="forgotTypeRadio" value="frgtUser" data-theme="none" checked="checked"/>
+        <label for="forgotUserName"><%= translateText("login-page-forgot-username-label")%></label>
+        <input type="radio" name="forgotDetails" id="forgotPassword" class="forgotTypeRadio" value="frgPswd" data-theme="none" />
+        <label for="forgotPassword"><%= translateText("login-page-forgot-password-label")%></label>
+        <input type="radio" name="forgotDetails" id="forgotBoth" class="forgotTypeRadio" value="frgBoth" data-theme="none" />
+        <label for="forgotBoth"><%= translateText("login-page-forgot-both-label")%></label>
+        </div>
+        <p><%= translateText("login-page-forgot-username-dialog-box-title") %></p>
+        <div id="displayInformationOnForgotBoth">
+        </div>
+        <div id="emailTextDiv">
+        <input type="text" id="emailText" data-role="none" class="validate[required,funcCall[requiredEmailidValidation]]" />
+        </div>
+        <div class="loginBtmbtns">
+        <a id="forgotDetailsCancel"><span><%= translateText("gen-cancel-button-label")%></span></a>
+        <a id="forgotUserNameAndBothSendButton" class="next"><span><%= translateText("login-next-button")%></span></a>
+        </div>
+        <input id="hiddenInputFieldToDifferentiateForgot" type="hidden" />
+        <input id="noOfAttemptsOnforgotUserNameAndBothPopup" type="hidden" />
+        </form>
+        </section>
+        </section>
+        
+        <section id="selectUserPopup" data-role="popup" data-theme="none" data-close-btn="none" data-position-to="window" data-dismissible="false">
+        <section id="selectUserWrap">
+        <form id="selectUserForm">
+        <div id="userDetails">
+        <p><%= translateText("login-page-select-user-dialog-box-title") %></p>
+        <input id="selectusertxt" type="hidden" />
+        <div id="userslistDiv"></div>
+        <div class="loginBtmbtns">
+        <a id="cancelUserSelection"><span><%= translateText("gen-cancel-button-label")%></span></a>
+        <a id="userSelected" class="next"><span><%= translateText("login-next-button")%></span></a>
+        </div>
+        </div>
+        <div id="securityInformation">
+        <div id="securityqandaDiv"></div>
+        <div class="loginBtmbtns">
+         <a id="cancelValidateQuestion"><span><%= translateText("gen-cancel-button-label")%></span></a>
+        <a id="sendmailButton" class="next"><span><%= translateText("login-next-button")%></span></a>
+        </div>
+        </div>
+        </form>
+        </section>
+        </section>
+        
+        
+        
+        <section id="wrongAnswerMessagePopup" data-role="popup" data-theme="none" data-close-btn="none" data-position-to="window" data-dismissible="false">
+        <section id="wrongAnswerMessageWrap">
+        <form id="wrongAnswerMessageForm">
+        <p><%= translateText("login-page-exceeded-wrong-answers-limit-msg") %>
+        <%= translateText("login-page-forgot-pass-status-msg-cont-admin") %>  </p>
+         <div class="loginBtmbtns center">
+         <a id="OkButton"><span><%= translateText('gen-ok-button-label') %></span></a>
+       </div>
+        
+        </form>
+        </section>
+        </section>
+        
+        <section id="emailSuccessMessagePopup" data-role="popup" data-theme="none" data-close-btn="none" data-position-to="window" data-dismissible="false">
+        <section id="emailSuccessMessageWrap">
+        <form id="emailSuccessMessageForm">
+        <p><%= translateText("login-page-forgot-pass-status-msg-success-email") %></p>
+        <div class="loginBtmbtns center">
+         <a id="OkButton"><span><%= translateText('gen-ok-button-label') %></span></a>
+       </div>
+        </form>
+        </section>
+        </section>
+        
+        <section id="contactAdminMessagePopup" data-role="popup" data-theme="none" data-close-btn="none" data-position-to="window" data-dismissible="false">
+        <section id="ContactAdminMessageWrap">
+        <form id="ContactAdminMessageForm">
+        <p><%= translateText("login-page-forgot-pass-error-msg-invalid-email") %>
+        <%= translateText("login-page-forgot-pass-status-msg-cont-admin") %></p>
+        <div class="loginBtmbtns center">
+         <a id="contactAdminMessageButton"><span><%= translateText('gen-ok-button-label') %></span></a>
+       </div>
+        </form>
+        </section>
+        </section>
+
+        <section id="changePasswordPopup" data-role="popup" data-theme="none" data-close-btn="none" data-position-to="window" data-dismissible="false">
+        <section id="changePasswordWrap">
+        <form id="changePasswordForm">
+        <label><%= translateText("login-page-forgot-pass-new-pass-label") %> <h>*</h></label>
+        <input type="password" id="txtnewPassword" class="validate[funcCall[validatePassword]]" data-mini="true" name="txtnewPassword" data-role="none" data-prompt-position="topLeft"/>
+        <label><%= translateText("login-page-forgot-pass-confirm-pass-label") %> <h>*</h></label>
+        <input type="password" id="txtconfirmPassword" class="validate[funcCall[twoFieldsDependancyValidation[txtnewPassword]]]" data-mini="true"  data-role="none"  name="txtconfirmPassword" data-prompt-position="topLeft"/>
+        <div id="securityQuestionDiv"></div>
+        <section id="rememberSection">
+          <div class="loginBtmbtns center">
+         <a id="btnLogin"><span><%= translateText('login-page-login-button-label') %></span></a>
+       </div>
+        
+        </section>
+               
+        </form>
+        </section>
+        </section>
+        
+        <footer id="loginFooter">
+        
+        </footer>
+
+</script>
+<script id="securityquestionsDD">
+    <div id="securitysection">
+        <div id ="securityquestion">
+        <div id ="securitysectionlabels">
+        <label><%= translateText("login-page-security-question-label") %> <h>*</h></label>
+        </div>
+        <div id="securityquestiondropdowndiv">
+        <select id="securityquestiondropdown"  class="validate[required]"  data-prompt-position="topLeft:-20,0" data-inline="true" data-mini="true"  data-theme="none" >
+        <option value=''>- <%= translateText("gen-select-option-label") %> -</option>
+        <%_.each(questionlist, function(obj) {%> 
+        <option value="<%=obj.SecurityQuestionId%>" > <%= obj.Question %></option>
+        <% }); %>
+        </select>
+        </div>
+        </div>
+        <div id ="securityanswer">
+        <div id ="securitysectionlabels">            
+        <label><%= translateText("login-page-security-answer-label") %> <h>*</h></label>
+        </div>
+        <div id="securityanswertxtbox">
+        <input type="text" id="securityanswerText" class="validate[required]"  data-prompt-position="topLeft" data-mini="true"/>
+        </div>
+        </div> 
+        </div>
+        
+</script>
+<script id="userslistradiobuttons">
+    <%_.each(userslist, function(object) {%>
+         <label for="<%=object.UserId%>"><%=object.FirstName + ' ' + object.LastName %></label>
+        <%if(object.SecurityQuestions !== null) {%>
+        <input id="<%=object.UserId%>"  data-mini="true" data-issetup="true" class="selectedUser validate[required]" value="<%=object.SecurityQuestions.Question%>" data-securityquestionid="<%=object.SecurityQuestions.SecurityQuestionId%>" type="radio" name="usernames" />
+        <%} else {%>
+        <input id="<%=object.UserId%>"  data-mini="true" data-issetup="false" class="selectedUser validate[required]" value="" data-securityquestionid="" type="radio" name="usernames" />
+        <%}%>
+        
+        <%}); %>
+
+</script>
+
+<script id="securityquestionandanswer">
+    <label id="<%=questionId%>"><%=questionName%></label>
+        <input type="text" id="answerText" class="validate[required]" data-mini="true" data-userid="<%=userId%>"  />
+</script>
